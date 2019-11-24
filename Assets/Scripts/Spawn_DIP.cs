@@ -6,7 +6,7 @@ using UnityEngine;
 public class Spawn_DIP : MonoBehaviour {
 	public GameObject prefab;
 	float timeLeft = 1f;
-	float timeUntilDestroyed = 10f;
+	
 	// Update is called once per frame
 	void Update () {
 		float randomSpawnTime = (Random.Range(.2f,.6f));

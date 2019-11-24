@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Bring_To_Character_Selection_Screen : MonoBehaviour {
 
@@ -13,6 +14,6 @@ public class Bring_To_Character_Selection_Screen : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
-		Debug.Log ("You have clicked the button!");
+		SceneManager.LoadScene("Character_Selection");
 	}
 }
