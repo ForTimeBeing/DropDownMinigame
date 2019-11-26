@@ -27,7 +27,7 @@ public class Client_Server : MonoBehaviour {
 		NetworkTransport.Init();
 		ConnectionConfig cc = new ConnectionConfig();
 		cc.AddChannel(QosType.Reliable);
-
+		
 		HostTopology topo = new HostTopology(cc, MAX_USER);
 
 		//Client only code
