@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main_Menu.unity
     guid: 7e40cad89ded55647a2453d6d194dafc
   - enabled: 1
-    path: Assets/Scenes/Levi.unity
+    path: Assets/Scenes/Main_Game.unity
     guid: edd5ce33fbcac6a43853238c23e4331c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Character_Selection.unity
     guid: 96657edbcb0142b4f978c9557a750f02
   m_configObjects: {}

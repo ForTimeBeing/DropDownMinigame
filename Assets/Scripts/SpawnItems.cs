@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class SpawnItems : MonoBehaviour
@@ -25,7 +23,17 @@ public class SpawnItems : MonoBehaviour
         GameObject dip = Instantiate(prefab);
         Destroy(dip, 6);
         dip.transform.position = new Vector2(randomNumber, 6);
+        RandomDirection(dip);
     }
-
+    private void RandomDirection(GameObject dip)
+    {
+        Rigidbody2D myRigidbody = dip.GetComponent<Rigidbody2D>();
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, Random.Range(0, 360), transform.eulerAngles.z);
+        float speed = 200;
+        myRigidbody.isKinematic = false;
+        Vector3 force = transform.forward;
+        force = new Vector3(force.x, 1, force.z);
+        myRigidbody.AddForce(force * speed);
+    }
 
 }
