@@ -9,6 +9,8 @@ public class myPlayer : MonoBehaviour
                                      // Use this for initialization
     private float moveHorizontal;
 
+    public GameObject explosion;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -33,5 +35,25 @@ public class myPlayer : MonoBehaviour
 
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
         rb2d.AddForce(movement * speed);
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.name == "Bomb" || col.gameObject.name == "Bomb (Clone)")
+        {
+            {
+                float magnitude = 25000;
+
+                Vector3 force = transform.position - col.transform.position;
+
+                force.Normalize();
+                GetComponent<Rigidbody2D>().AddForce(force * magnitude);
+            }
+            GameObject bombExplosion = Instantiate(explosion);
+            Destroy(bombExplosion, 5);
+            bombExplosion.transform.position = col.transform.position;
+            Destroy(col.gameObject);
+            //Spawn in explosion
+           
+        }
     }
 }

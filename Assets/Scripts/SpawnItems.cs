@@ -3,7 +3,10 @@
 
 public class SpawnItems : MonoBehaviour
 {
-    public GameObject prefab;
+    public GameObject DefaultItem;
+
+    public GameObject BombItem;
+
     float timeLeft = 1f;
 
     // Update is called once per frame
@@ -13,17 +16,28 @@ public class SpawnItems : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if (timeLeft < 0)
         {
-            Invoke("Spawn", 0f);
+            Invoke("SpawnBomb", 0f);
+            Invoke("SpawnDefaultFallingObjects", 0f);
             timeLeft = randomSpawnTime;
         }
     }
-    void Spawn()
+    void SpawnBomb(){
+        int randomSpawnTime = (Random.Range(1, 100));
+        float randomXspawn= Random.Range(10f, 70f);
+        if (randomSpawnTime < 20){
+            GameObject bombFallingObject = Instantiate(BombItem);
+            Destroy(bombFallingObject, 12);
+            bombFallingObject.transform.position = new Vector2(randomXspawn, 50);
+            RandomDirection(bombFallingObject);
+        }
+    }
+    void SpawnDefaultFallingObjects()
     {
-        float randomNumber = Random.Range(-4.5f, 5f);
-        GameObject dip = Instantiate(prefab);
-        Destroy(dip, 6);
-        dip.transform.position = new Vector2(randomNumber, 6);
-        RandomDirection(dip);
+        float randomXspawn = Random.Range(10f, 70f);
+        GameObject defaultFallingObject = Instantiate(DefaultItem);
+        Destroy(defaultFallingObject, 12);
+        defaultFallingObject.transform.position = new Vector2(randomXspawn, 50);
+        RandomDirection(defaultFallingObject);
     }
     private void RandomDirection(GameObject dip)
     {

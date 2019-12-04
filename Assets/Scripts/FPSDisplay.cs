@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class FPSDisplay : MonoBehaviour
 {
@@ -16,10 +15,9 @@ public class FPSDisplay : MonoBehaviour
         float current = 0;
         current = (int)(1f / Time.unscaledDeltaTime);
         avgFrameRate = (int)current;
-		
 		if (isInvokRunning == false){
 			isInvokRunning = true;
-			InvokeRepeating("DisplayText", 1.0f, 0.3f);
+			InvokeRepeating("DisplayText", 0.5f, 0f);
 		}
 		
     }
