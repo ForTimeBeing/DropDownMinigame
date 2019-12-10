@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ItemCollision : MonoBehaviour
 {
@@ -9,6 +7,7 @@ public class ItemCollision : MonoBehaviour
     {
         if (col.gameObject.name == "Player")
         {
+            ScoreboardManager.Instance.addScore();
             CmdDetachParticles();
             Destroy(gameObject);
         }

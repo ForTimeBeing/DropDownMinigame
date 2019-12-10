@@ -14,8 +14,6 @@ public class myPlayer : MonoBehaviour
 
     public static string specialItem;
 
-    public static float score = 0;
-
     public UnityEngine.Experimental.Rendering.LWRP.Light2D m_Light2D;
 
     void Start()
