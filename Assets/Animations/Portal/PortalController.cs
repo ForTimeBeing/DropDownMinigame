@@ -23,7 +23,7 @@ public class PortalController : MonoBehaviour
             boxcoll.enabled = true;
             particles.Play();
             StartCoroutine(ClosePortal(boxcoll, particles));
-
+            PlayerLightController.hasspecial = false;
         }
     }
     IEnumerator makesSureBothPortalsSpawn()

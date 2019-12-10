@@ -14,13 +14,14 @@ public class myPlayer : MonoBehaviour
 
     public static string specialItem;
 
+    public static float score = 0;
+
     public UnityEngine.Experimental.Rendering.LWRP.Light2D m_Light2D;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         myPlayer.specialItem = "Nothing";
-
     }
 
     // Update is called once per frame
@@ -37,8 +38,6 @@ public class myPlayer : MonoBehaviour
         Vector2 movement = new Vector2(moveHorizontal, 0);
         rb2d.AddForce(movement * speed);
         //End Character movement
-
-
     }
 
     //Used for all collisions
@@ -49,12 +48,14 @@ public class myPlayer : MonoBehaviour
         {
             m_Light2D.pointLightOuterRadius = m_Light2D.pointLightOuterRadius * .8f;
             Vector3 force = transform.position - col.transform.position;
+            PlayerLightController.flashred = true;
             StartCoroutine(ApplyExplosionMove(force));
             GameObject bombExplosion = Instantiate(explosion);
             CameraShake.shakeScreen = true;
             Destroy(bombExplosion, 5);
             bombExplosion.transform.position = col.transform.position;
             Destroy(col.gameObject);
+            PlayerLightController.hasspecial = true;
         }
         //End Bomb explosion
 
@@ -63,6 +64,9 @@ public class myPlayer : MonoBehaviour
         {
             float randomNumber = Random.Range(1, 1);
             if(randomNumber == 1){
+                PlayerLightController.playerlightcolor = "#9C9CFF";
+                PlayerLightController.changelightcolor = true;
+                PlayerLightController.hasspecial = true;
                 myPlayer.specialItem = "portals";
             }
             Destroy(col.gameObject);

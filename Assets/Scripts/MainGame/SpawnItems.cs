@@ -29,7 +29,7 @@ public class SpawnItems : MonoBehaviour
         float randomXspawn = Random.Range(10f, 70f);
 
         //Rate at which mystery boxes spawn
-        if (randomSpawnTime > 95)
+        if (randomSpawnTime > 55)
         {
             SpawnMysteryBox();
         }
