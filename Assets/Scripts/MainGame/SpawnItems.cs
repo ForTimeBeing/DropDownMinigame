@@ -16,7 +16,7 @@ public class SpawnItems : MonoBehaviour
     {
         float randomSpawnTime = (Random.Range(.2f, .6f));
         timeLeft -= Time.deltaTime;
-        if (timeLeft < 0)
+        if (timeLeft < 0 && GameOver.gameover == false)
         {
             Invoke("SpawnBomb", 0f);
             Invoke("SpawnDefaultFallingObjects", 0f);
@@ -29,12 +29,12 @@ public class SpawnItems : MonoBehaviour
         float randomXspawn = Random.Range(10f, 70f);
 
         //Rate at which mystery boxes spawn
-        if (randomSpawnTime > 55)
+        if (randomSpawnTime > 55 && GameOver.gameover == false)
         {
             SpawnMysteryBox();
         }
         //Rate at which bombs spawn
-        if (randomSpawnTime < 20)
+        if (randomSpawnTime < 20 && GameOver.gameover == false)
         {
             SpawnBombs();
         }

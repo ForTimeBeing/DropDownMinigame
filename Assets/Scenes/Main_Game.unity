@@ -10489,6 +10489,7 @@ GameObject:
   - component: {fileID: 640104502}
   - component: {fileID: 640104501}
   - component: {fileID: 640104500}
+  - component: {fileID: 640104503}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -10544,6 +10545,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &640104503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640104499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de1296407f5fcb947b9d36149207e6d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPlayerObject: {fileID: 0}
+  myPlayerRigidbody: {fileID: 0}
+  myPlayerSpriteRender: {fileID: 0}
+  myPlayerCollider: {fileID: 0}
 --- !u!1 &664285284
 GameObject:
   m_ObjectHideFlags: 0
@@ -16605,7 +16622,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 1e772ed546a109848a3d47e3588440ec, type: 3}
     m_FontSize: 2
     m_FontStyle: 3
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 43
     m_Alignment: 0
@@ -18336,7 +18353,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 0908f99228fdd554ea3d191edcbe273d, type: 3}
     m_FontSize: 4
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 1

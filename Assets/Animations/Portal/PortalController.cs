@@ -11,8 +11,9 @@ public class PortalController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && PortalController.canSpawnPortals == true && myPlayer.specialItem == "portals")
         {
+            PlayerLightController.hasspecial = false;
+            myPlayer.specialItem = "nothing";
             StartCoroutine(makesSureBothPortalsSpawn());
-       
 
             BoxCollider2D boxcoll = gameObject.GetComponent<BoxCollider2D>();
             GameObject particlesObject = gameObject.transform.Find("Particles").gameObject;
@@ -23,13 +24,12 @@ public class PortalController : MonoBehaviour
             boxcoll.enabled = true;
             particles.Play();
             StartCoroutine(ClosePortal(boxcoll, particles));
-            PlayerLightController.hasspecial = false;
+            
         }
     }
     IEnumerator makesSureBothPortalsSpawn()
     {
         yield return new WaitForSeconds(1);
-        myPlayer.specialItem = "Nothing";
     }
     IEnumerator ClosePortal(BoxCollider2D boxcoll, ParticleSystem particles)
     {

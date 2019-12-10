@@ -16,6 +16,8 @@ public class myPlayer : MonoBehaviour
 
     public UnityEngine.Experimental.Rendering.LWRP.Light2D m_Light2D;
 
+    float randomNumber = 0;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -36,6 +38,16 @@ public class myPlayer : MonoBehaviour
         Vector2 movement = new Vector2(moveHorizontal, 0);
         rb2d.AddForce(movement * speed);
         //End Character movement
+        //Gives player more light
+        if (Input.GetKey(KeyCode.Space) && myPlayer.specialItem == "brightenlight")
+        {
+            if (m_Light2D.pointLightOuterRadius < 31f)
+            {
+                m_Light2D.pointLightOuterRadius = m_Light2D.pointLightOuterRadius * 1.2f;
+            }
+            myPlayer.specialItem = "nothing";
+            PlayerLightController.hasspecial = false;
+        }
     }
 
     //Used for all collisions
@@ -53,25 +65,34 @@ public class myPlayer : MonoBehaviour
             Destroy(bombExplosion, 5);
             bombExplosion.transform.position = col.transform.position;
             Destroy(col.gameObject);
-            PlayerLightController.hasspecial = true;
         }
         //End Bomb explosion
 
         //Collosion with mystery box
         if (col.gameObject.name == "mysterybox" || col.gameObject.name == "mysterybox(Clone)")
         {
-            float randomNumber = Random.Range(1, 1);
-            if(randomNumber == 1){
+            randomNumber = Random.Range(1, 3);
+            //Portals
+            if (randomNumber == 1 && PlayerLightController.hasspecial == false)
+            {
+                myPlayer.specialItem = "portals";
                 PlayerLightController.playerlightcolor = "#9C9CFF";
                 PlayerLightController.changelightcolor = true;
                 PlayerLightController.hasspecial = true;
-                myPlayer.specialItem = "portals";
+            }
+            //Brighten Light
+            if (randomNumber == 2 && PlayerLightController.hasspecial == false)
+            {
+                myPlayer.specialItem = "brightenlight";
+                PlayerLightController.playerlightcolor = "#FFDD92";
+                PlayerLightController.changelightcolor = true;
+                PlayerLightController.hasspecial = true;
             }
             Destroy(col.gameObject);
         }
     }
 
-  
+
     //Knockback when getting hit by bomb
     IEnumerator ApplyExplosionMove(Vector3 force)
     {

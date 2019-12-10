@@ -30,7 +30,7 @@ public class PlayerLightController : MonoBehaviour
         //changes light color
         if (changelightcolor == true)
         {
-            ColorUtility.TryParseHtmlString (playerlightcolor, out playerlight);
+            ColorUtility.TryParseHtmlString(playerlightcolor, out playerlight);
             mylight.color = Color.Lerp(currentcolor, playerlight, 1);
             currentcolor = playerlight;
             changelightcolor = false;
@@ -41,21 +41,28 @@ public class PlayerLightController : MonoBehaviour
             StartCoroutine(FlashRed());
             flashred = false;
         }
+        if (hasspecial == false && currentcolor != Color.white)
+        {
+            mylight.color = Color.Lerp(currentcolor, Color.white, 1);
+            currentcolor = Color.white;
+        }
         //Pulses red
-        if (m_Light2D.pointLightOuterRadius < 15)
+        if (m_Light2D.pointLightOuterRadius < 16)
         {
             float t = Mathf.PingPong(Time.time, duration) / duration;
             mylight.color = Color.Lerp(currentcolor, Color.red, t);
+            mylight.color = Color.Lerp(Color.red, currentcolor, t);
         }
-        if(hasspecial == false && playerlight != Color.white)
-        {
-            mylight.color = Color.Lerp(currentcolor, Color.white, 1);
+        //Gameover
+        if (m_Light2D.pointLightOuterRadius < 10){
+            m_Light2D.pointLightOuterRadius = 0;
+            GameOver.gameover = true;
         }
     }
     IEnumerator FlashRed()
     {
-        mylight.color = Color.Lerp(playerlight, Color.red, 1);
+        mylight.color = Color.Lerp(currentcolor, Color.red, 1);
         yield return new WaitForSeconds(.3f);
-        mylight.color = Color.Lerp(Color.red, playerlight, 1);
+        mylight.color = Color.Lerp(Color.red, currentcolor, 1);
     }
 }
