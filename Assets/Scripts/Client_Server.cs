@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Client_Server : MonoBehaviour
 {
+    public static Client_Server Instance { private set; get; }
+
     private const int MAX_USER = 10;
     private const int PORT = 26000;
     private const int WEB_PORT = 26001;
@@ -20,6 +22,7 @@ public class Client_Server : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         DontDestroyOnLoad(gameObject);
         Init();
     }
@@ -122,11 +125,12 @@ public class Client_Server : MonoBehaviour
         }
         #endregion
     }
-	//CLICKING BUTTON SENDS TO CLIENT, PLACING IT IN SCOREBOARDMANAGER CLASS AND CALLING IT DOES NOT ALTHOUGH PRINTS TO CLIENT
-	public void SendScore(){
-		print(ScoreboardManager.Instance.score);
-		Net_SendScore net_score = new Net_SendScore();
-		net_score.score = ScoreboardManager.Instance.score;
-		SendServer(net_score);
-	}
+    //CLICKING BUTTON SENDS TO CLIENT, PLACING IT IN SCOREBOARDMANAGER CLASS AND CALLING IT DOES NOT ALTHOUGH PRINTS TO CLIENT
+    public void SendScore(int score)
+    {
+        Net_SendScore net_score = new Net_SendScore();
+        net_score.score = score;
+        print(score);
+        SendServer(net_score);
+    }
 }

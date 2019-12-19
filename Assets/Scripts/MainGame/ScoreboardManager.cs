@@ -3,8 +3,6 @@ using UnityEngine.UI;
 
 public class ScoreboardManager : MonoBehaviour
 {
-    Client_Server client = new Client_Server();
-
     public int score = 0;
 
     public static ScoreboardManager Instance;
@@ -20,7 +18,6 @@ public class ScoreboardManager : MonoBehaviour
     {
         score += 1;
         myTextObject.text = score.ToString();
-
-        client.SendScore();
+        Client_Server.Instance.SendScore(score);
     }
 }
